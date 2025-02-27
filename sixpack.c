@@ -284,7 +284,7 @@ matchchar(P, int ch, const char *errmsg, S)
 	if (p->look == ch) {
 		nextchar(p, CHECK_OK);
 	} else {
-		ERROR(STATUS_ERROR, "unexpected input");
+		ERROR(STATUS_ERROR, errmsg);
 	}
 
 error: NOOP;
@@ -556,7 +556,7 @@ parse_keyval_items(P, int eos, S)
 		}
 
 		if (!got_separator) {
-			ERROR(STATUS_ERROR, "missing key-value separator");
+			ERROR(STATUS_ERROR, "missing separator");
 			goto error;
 		}
 
