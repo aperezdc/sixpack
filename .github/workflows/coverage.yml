@@ -1,0 +1,29 @@
+---
+name: Coverage
+
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+    branches:
+    - main
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        persist-credentials: false
+    - name: Gather Coverage
+      run: ./tools/run-coverage
+    - name: Submit
+      uses: threeal/gcovr-action@v1
+      with:
+        coveralls-send: true
+
