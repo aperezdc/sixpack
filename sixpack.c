@@ -8,28 +8,28 @@
 #include <stdio.h>
 
 #if defined(__STDC_VERSION__) && (__STDC_VERSION__ >= 202311L)
-#define FALLTHROUGH [[fallthrough]]
+#  define FALLTHROUGH [[fallthrough]]
 #else
-#define FALLTHROUGH
+#  define FALLTHROUGH
 #endif
 
 #define NOOP ((void) 0)
 
 #ifdef __GNUC__
-#define likely(x)   __builtin_expect(!!(x), 1)
-#define unlikely(x) __builtin_expect(!!(x), 0)
+#  define likely(x)   __builtin_expect(!!(x), 1)
+#  define unlikely(x) __builtin_expect(!!(x), 0)
 #else
-#define likely(x)   (x)
-#define unlikely(x) (x)
+#  define likely(x)   (x)
+#  define unlikely(x) (x)
 #endif
 
 #ifdef SIXPACK_STATIC
-# ifndef SIXPACK_STATIC_BUFFER_SIZE
-#  define SIXPACK_STATIC_BUFFER_SIZE 255
-# endif
-# define CBUF_ALLOC(cbuf) SIXPACK_STATIC_BUFFER_SIZE
+#  ifndef SIXPACK_STATIC_BUFFER_SIZE
+#    define SIXPACK_STATIC_BUFFER_SIZE 255
+#  endif
+#  define CBUF_ALLOC(cbuf) SIXPACK_STATIC_BUFFER_SIZE
 #else
-# define CBUF_ALLOC(cbuf) ((cbuf)->alloc)
+#  define CBUF_ALLOC(cbuf) ((cbuf)->alloc)
 #endif
 
 struct cbuf {

@@ -3,15 +3,15 @@
 #pragma once
 
 #if defined(__STDC_VERSION__) && (__STDC_VERSION__ >= 202311L)
-#define SIXPACK_NODISCARD [[nodiscard]]
+#  define SIXPACK_NODISCARD [[nodiscard]]
 #elif defined(__GNUC__)
-#define SIXPACK_NODISCARD __attribute__((warn_unused_result))
+#  define SIXPACK_NODISCARD __attribute__((warn_unused_result))
 #else
-#define SIXPACK_NODISCARD
+#  define SIXPACK_NODISCARD
 #endif
 
 #if !(defined(__STDC_VERSION__) && (__STDC_VERSION__ >= 202311L))
-#include <stdbool.h>
+#  include <stdbool.h>
 #endif
 
 #ifndef SIXPACK_API
