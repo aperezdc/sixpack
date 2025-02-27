@@ -28,3 +28,5 @@ jobs:
         ${{ matrix.compiler }}
         ${{ matrix.buildopt }}
         -Wall -std=c99 -o sixpack sixpack.c -DSIXPACK_MAIN
+    - name: Run
+      run: ./tools/run-tests
