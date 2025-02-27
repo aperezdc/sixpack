@@ -1,0 +1,30 @@
+---
+name: Test
+
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+    branches:
+    - main
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        compiler: [gcc, clang]
+        buildopt: ["", "-DSIXPACK_STATIC"]
+    runs-on: ubuntu-22.04
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        persist-credentials: false
+    - name: Compile
+      run: >-
+        ${{ matrix.compiler }}
+        ${{ matrix.buildopt }}
+        -Wall -std=c99 -o sixpack sixpack.c -DSIXPACK_MAIN
