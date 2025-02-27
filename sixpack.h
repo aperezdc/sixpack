@@ -14,11 +14,13 @@
 #include <stdbool.h>
 #endif
 
-#ifdef __GNUC__
-#define SIXPACK_API __attribute__((visibility("default"))) extern
-#else
-#define SIXPACK_API extern
-#endif
+#ifndef SIXPACK_API
+#  ifdef __GNUC__
+#    define SIXPACK_API __attribute__((visibility("default"))) extern
+#  else
+#    define SIXPACK_API extern
+#  endif
+#endif // !SIXPACK_API
 
 enum {
 	SIXPACK_IO_EOF = -1,
