@@ -617,7 +617,7 @@ sixpack_parse(struct sixpack *sp)
 {
 	assert(sp);
 
-	struct parser p = { .sp = sp };
+	struct parser p = { .sp = sp, .line = 1 };
 	enum status status = STATUS_OK;
 	parse_message(&p, &status);
 	buffer_free(&p);
