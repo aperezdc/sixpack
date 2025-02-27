@@ -1,5 +1,7 @@
 // SPDX-License-Identifier: MIT
 
+#define _POSIX_C_SOURCE 2  // Needed for getopt().
+
 #include "sixpack.h"
 #include <assert.h>
 #include <stdlib.h>
