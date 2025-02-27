@@ -698,7 +698,9 @@ parse_one(const char *argv0, const char *filename, struct sixpack_ext *spx, bool
 
 	spx->indent = 0;
 	if (!sixpack_parse(&spx->base)) {
-		fprintf(stderr, "%s: %s\n", argv0, spx->base.error_message ? spx->base.error_message : "no errror message");
+		fprintf(stderr, "line %u, column %u: %s\n",
+				spx->base.error_line, spx->base.error_column,
+				spx->base.error_message ? spx->base.error_message : "no errror message");
 		*ok = false;
 	}
 
