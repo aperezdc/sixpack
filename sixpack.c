@@ -110,9 +110,9 @@ struct parser {
 	} while (false)
 
 static inline void
-buffer_push(struct parser *p, int ch, S)
+buffer_push(struct parser *p, S)
 {
-	if (unlikely(!cbuf_push(&p->buffer, ch)))
+	if (unlikely(!cbuf_push(&p->buffer, p->look)))
 		ERROR(STATUS_OOM_ERROR, "out of memory");
 }
 
@@ -330,7 +330,7 @@ parse_number(P, S)
 	assert(buffer_is_empty(p));
 
 	if (p->look == '-' || p->look == '+') {
-		buffer_push(p, p->look, CHECK_OK);
+		buffer_push(p, CHECK_OK);
 		nextchar(p, CHECK_OK);
 	}
 
@@ -338,10 +338,10 @@ parse_number(P, S)
 	bool is_octal = false;
 	bool is_hex = false;
 	if (p->look == '0') {
-		buffer_push(p, p->look, CHECK_OK);
+		buffer_push(p, CHECK_OK);
 		nextchar(p, CHECK_OK);
 		if (p->look == 'x' || p->look == 'X') {
-			buffer_push(p, p->look, CHECK_OK);
+			buffer_push(p, CHECK_OK);
 			nextchar(p, CHECK_OK);
 			is_hex = true;
 		} else if (is_octal_nonzero_char(p->look)) {
@@ -357,12 +357,12 @@ parse_number(P, S)
 			if (exp_seen || is_octal)
 				goto error;
 			exp_seen = true;
-			buffer_push(p, p->look, CHECK_OK);
+			buffer_push(p, CHECK_OK);
 			nextchar(p, CHECK_OK);
 
 			// Optional sign of the exponent.
 			if (p->look == '-'  || p->look == '+') {
-				buffer_push(p, p->look, CHECK_OK);
+				buffer_push(p, CHECK_OK);
 				nextchar(p, CHECK_OK);
 			}
 		} else {
@@ -373,7 +373,7 @@ parse_number(P, S)
 			}
 			if (p->look == '-' || p->look == '+')
 				goto error;
-			buffer_push(p, p->look, CHECK_OK);
+			buffer_push(p, CHECK_OK);
 			nextchar(p, CHECK_OK);
 		}
 	}
@@ -402,7 +402,7 @@ parse_key(P, S)
 	assert(buffer_is_empty(p));
 
 	while (p->look != SIXPACK_IO_EOF && is_key_char(p->look)) {
-		buffer_push(p, p->look, CHECK_OK);
+		buffer_push(p, CHECK_OK);
 		nextchar(p, CHECK_OK);
 	}
 	
@@ -444,7 +444,7 @@ parse_string(P, S)
 				break;
 			}
 		}
-		buffer_push(p, p->look, CHECK_OK);
+		buffer_push(p, CHECK_OK);
 		p->look = nextchar_raw(p, CHECK_OK);
 	}
 
