@@ -1,6 +1,7 @@
 # SixPack
 
-[![Test](https://github.com/aperezdc/sixpack/actions/workflows/test.yml/badge.svg?event=push)](https://github.com/aperezdc/sixpack/actions/workflows/test.yml)
+[![Build & Test Status](https://github.com/aperezdc/sixpack/actions/workflows/test.yml/badge.svg?event=push)](https://github.com/aperezdc/sixpack/actions/workflows/test.yml)
+[![Coverage Status](https://coveralls.io/repos/github/aperezdc/sixpack/badge.svg?branch=main)](https://coveralls.io/github/aperezdc/sixpack?branch=main)
 
 Minimalist, [SAX](https://en.wikipedia.org/wiki/Simple_API_for_XML)-style,
 single-file, parser for the [HiPack](http://hipack.org) serialization format
