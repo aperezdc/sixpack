@@ -719,7 +719,13 @@ main(int argc, char *argv[])
 			verbose = true;
 			break;
 		default:
-			fprintf(stderr, "usage: %s [-vt] [files...]\n", argv[0]);
+			fprintf(stderr,
+					"Usage: %s [-vt] [files...]\n"
+					"Without files, parse standard input.\n"
+					"Options:\n"
+					"  -v  Show file paths as they are being processed.\n"
+					"  -t  Dump tree structure of parsed files.\n",
+					argv[0]);
 			return (optch == 'h') ? EXIT_SUCCESS : EXIT_FAILURE;
 		}
 	}
