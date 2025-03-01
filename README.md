@@ -15,6 +15,7 @@ Features:
 * *(Optional)*. May operate [without memory allocations](#zero-allocation-mode),
   making it suitable for small embedded devices.
 
+
 ## Sample Tool
 
 Building `sixpack.c` with the `SIXPACK_MAIN` macro defined results in a
@@ -31,6 +32,20 @@ Options:
 %
 ```
 
+Running `make sixpack` (or plainly `make`) compiles this program, too.
+
+
+## Sample Document Tree Building
+
+The [sixdom.hh](sixdom.hh) and [sixdom.cc](sixdom.cc) files show how to build
+a document tree from the parser callbacks. This is implemented in C++20 for
+the convenience of the containers (like `std::vector` or `std::unordered_map`
+provided by the standard library. Included are both a wrapping API that makes
+the bare C API more idiomatic, and the `DOMBuilder` itself.
+
+A sample test program may be built with `make sixdompp`.
+
+
 ## Zero Allocation Mode
 
 When built with the `SIXPACK_STATIC` macro defined, the parser uses a fixed
@@ -44,6 +59,9 @@ to zero-terminate strings.
 In this mode the maximum *textual* length of numbers, strings, and
 dictionary keys is limited by the buffer size in use.
 
+
 ## License
 
-[MIT](https://opensource.org/license/MIT)
+* [MIT](https://opensource.org/license/MIT)
+* Code under `thirdparty/` may have different licensing terms, make sure to
+  check [the separate README](thirdparty/README.md).
