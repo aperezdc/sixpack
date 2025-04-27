@@ -1,6 +1,12 @@
 // SPDX-License-Identifier: MIT
 
+#if defined(_POSIX_C_SOURCE) && (_POSIX_C_SOURCE < 2)
+#undef _POSIX_C_SOURCE
+#endif
+
+#ifndef _POSIX_C_SOURCE
 #define _POSIX_C_SOURCE 2  // Needed for getopt().
+#endif
 
 #include "sixpack.h"
 #include <assert.h>
